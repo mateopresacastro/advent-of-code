@@ -1,9 +1,8 @@
-import { TextLineStream } from "jsr:@std/streams@0.224.0/text-line-stream";
+import readLines from "../read-lines.ts";
 
-using f = await Deno.open("input.txt");
-const lines = f.readable
-    .pipeThrough(new TextDecoderStream())
-    .pipeThrough(new TextLineStream());
+const path = `${import.meta.dirname}/input.txt`
+using file = await Deno.open(path)
+const lines = readLines(file)
 
 let safeReports = 0;
 
